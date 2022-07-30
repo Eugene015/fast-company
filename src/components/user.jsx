@@ -1,7 +1,8 @@
 import React from "react";
 import Qualitie from "./qualitie";
-import BookMark from "./bookmark";
+import Bookmark from "./bookmark";
 import PropTypes from "prop-types";
+
 const User = ({
     _id,
     name,
@@ -11,47 +12,55 @@ const User = ({
     rate,
     onDelete,
     bookmark,
-    onToggleBookMark
+    onToggleBookmark
 }) => {
     return (
-        <tr>
-            <td>{name}</td>
-            <td>
-                {qualities.map((qual) => (
-                    <Qualitie key={qual._id} {...qual} />
-                ))}
-            </td>
-            <td>{profession.name}</td>
-            <td>{completedMeetings}</td>
-            <td>{rate} /5</td>
-            <td>
-                <BookMark
-                    status={bookmark}
-                    onClick={() => onToggleBookMark(_id)}
-                />
-            </td>
-            <td>
-                <button
-                    onClick={() => onDelete(_id)}
-                    className="btn btn-danger"
-                >
-                    delete
-                </button>
-            </td>
-        </tr>
+        <>
+            <tr>
+                <td>{name}</td>
+                <td>
+                    {qualities.map((quality) => (
+                        <Qualitie
+                            key={quality._id}
+                            color={quality.color}
+                            name={quality.name}
+                            id={quality._id}
+                        />
+                    ))}
+                </td>
+                <td>{profession.name}</td>
+                <td>{completedMeetings}</td>
+                <td>{rate} /5</td>
+                <td>
+                    <Bookmark
+                        status={bookmark}
+                        onClick={() => onToggleBookmark(_id)}
+                    />
+                </td>
+                <td>
+                    <button
+                        type="button"
+                        className="btn btn-secondary bg-danger btn-sm m-2"
+                        onClick={() => onDelete(_id)}
+                    >
+                        delete
+                    </button>
+                </td>
+            </tr>
+        </>
     );
 };
 
 User.propTypes = {
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    qualities: PropTypes.arrayOf(PropTypes.object),
-    profession: PropTypes.object.isRequired,
     completedMeetings: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    profession: PropTypes.object.isRequired,
     bookmark: PropTypes.bool.isRequired,
-    onToggleBookMark: PropTypes.func.isRequired
+    qualities: PropTypes.array.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onToggleBookmark: PropTypes.func.isRequired
 };
 
 export default User;
