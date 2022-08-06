@@ -29,11 +29,13 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         scope="col"
                     >
                         {columns[column].name}
-                        {columns[column].path === selectedSort.path &&
+                        {columns[column].path &&
+                        columns[column].path === selectedSort.path &&
                         selectedSort.order === "asc"
                             ? carretDown
                             : ""}
-                        {columns[column].path === selectedSort.path &&
+                        {columns[column].path &&
+                        columns[column].path === selectedSort.path &&
                         selectedSort.order === "desc"
                             ? carretUp
                             : ""}
