@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 const TableHeader = ({ onSort, selectedSort, columns }) => {
-    const carretDown = <i className="bi bi-caret-down-fill"></i>;
-    const carretUp = <i className="bi bi-caret-up-fill"></i>;
     const handleSort = (item) => {
         if (selectedSort.path === item) {
             onSort({
@@ -14,6 +11,17 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
             onSort({ path: item, order: "asc" });
         }
     };
+    const renderSortArrow = (selectedSort, currentPath) => {
+        if (selectedSort.path === currentPath) {
+            if (selectedSort.order === "asc") {
+                return <i className="bi bi-caret-down-fill"></i>;
+            } else {
+                return <i className="bi bi-caret-up-fill"></i>;
+            }
+        }
+        return null;
+    };
+
     return (
         <thead>
             <tr>
@@ -28,24 +36,14 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         {...{ role: columns[column].path && "button" }}
                         scope="col"
                     >
-                        {columns[column].name}
-                        {columns[column].path &&
-                        columns[column].path === selectedSort.path &&
-                        selectedSort.order === "asc"
-                            ? carretDown
-                            : ""}
-                        {columns[column].path &&
-                        columns[column].path === selectedSort.path &&
-                        selectedSort.order === "desc"
-                            ? carretUp
-                            : ""}
+                        {columns[column].name}{" "}
+                        {renderSortArrow(selectedSort, columns[column].path)}
                     </th>
                 ))}
             </tr>
         </thead>
     );
 };
-
 TableHeader.propTypes = {
     onSort: PropTypes.func.isRequired,
     selectedSort: PropTypes.object.isRequired,
