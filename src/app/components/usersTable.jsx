@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import BookMark from "./bookmark";
 import QualitiesList from "./qualitiesList";
 import Table from "./table";
 import { Link } from "react-router-dom";
 
-const UsersTable = ({
+const UserTable = ({
     users,
     onSort,
     selectedSort,
-    onToggleBookmark,
+    onToggleBookMark,
     onDelete,
     ...rest
 }) => {
     const columns = {
         name: {
             path: "name",
-            name: "Имя ",
+            name: "Имя",
             component: (user) => (
                 <Link to={`/users/${user._id}`}>{user.name}</Link>
             )
@@ -25,28 +26,27 @@ const UsersTable = ({
             name: "Качества",
             component: (user) => <QualitiesList qualities={user.qualities} />
         },
-        profession: { path: "profession.name", name: "Профессия " },
+        professions: { path: "profession.name", name: "Профессия" },
         completedMeetings: {
             path: "completedMeetings",
-            name: "Встретился раз "
+            name: "Встретился, раз"
         },
-        rate: { path: "rate", name: "Оценка " },
+        rate: { path: "rate", name: "Оценка" },
         bookmark: {
             path: "bookmark",
-            name: "Избранное ",
+            name: "Избранное",
             component: (user) => (
                 <BookMark
                     status={user.bookmark}
-                    onClick={() => onToggleBookmark(user._id)}
+                    onClick={() => onToggleBookMark(user._id)}
                 />
             )
         },
         delete: {
             component: (user) => (
                 <button
-                    type="button"
-                    className="btn btn-secondary bg-danger btn-sm m-2"
                     onClick={() => onDelete(user._id)}
+                    className="btn btn-danger"
                 >
                     delete
                 </button>
@@ -63,12 +63,12 @@ const UsersTable = ({
     );
 };
 
-UsersTable.propTypes = {
+UserTable.propTypes = {
     users: PropTypes.array.isRequired,
     onSort: PropTypes.func.isRequired,
     selectedSort: PropTypes.object.isRequired,
-    onToggleBookmark: PropTypes.func.isRequired,
+    onToggleBookMark: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired
 };
 
-export default UsersTable;
+export default UserTable;
