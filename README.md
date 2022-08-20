@@ -1,3 +1,15 @@
+# Fast Company
+
+Educational project based on React JS technology using functional components and hooks (useState, useEffect, useHistory, useParams). In the project are implemented filtering, sorting, and pagination features.
+
+![fastcompany](https://user-images.githubusercontent.com/101366301/185749572-17a41479-24f4-45cc-aeb2-fa0cf66cf764.gif)
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
