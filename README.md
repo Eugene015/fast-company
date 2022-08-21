@@ -2,7 +2,7 @@
 
 Educational project based on React JS technology using functional components and hooks (useState, useEffect, useHistory, useParams). In the project are implemented filtering, sorting, and pagination features. Fake REST API data fetching is implemented. An array of objects and objects of objects are used to display content in the components.  
 
-![fastcompany](https://user-images.githubusercontent.com/101366301/185749572-17a41479-24f4-45cc-aeb2-fa0cf66cf764.gif)
+![fastcompany](https://user-images.githubusercontent.com/101366301/185784659-67a99cb1-401c-492c-a413-29a4b84748db.gif)
 
 
 # Getting Started with Create React App
