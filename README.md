@@ -4,7 +4,7 @@ Educational project based on React JS technology using functional components and
 
 https://eugene015.github.io/fast-company
 
-![fastcompany](https://user-images.githubusercontent.com/101366301/185784659-67a99cb1-401c-492c-a413-29a4b84748db.gif)
+![fastcompany](https://user-images.githubusercontent.com/101366301/186401566-4bf11acd-1b5a-404a-a776-8e029a5a4042.gif)
 
 
 # Getting Started with Create React App
