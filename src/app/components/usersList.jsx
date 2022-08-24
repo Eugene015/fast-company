@@ -7,10 +7,12 @@ import GroupList from "./groupList";
 import SearchStatus from "./searchStatus";
 import UserTable from "./usersTable";
 import _ from "lodash";
+import TextField from "./textField";
 const UsersList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
+    const [searchData, setSearchData] = useState();
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
     const pageSize = 8;
 
@@ -50,25 +52,58 @@ const UsersList = () => {
         setSortBy(item);
     };
 
+    const handleChange = ({ target }) => {
+        setSelectedProf("");
+        setSearchData(target.value);
+    };
+
+    const clearFilter = () => {
+        setSelectedProf("");
+    };
+
+    const clearSearchData = () => {
+        setSearchData("");
+    };
+
+    console.log(searchData);
+
+    const reg = new RegExp(searchData, "g");
+
+    const selectedProfFunc = () => {
+        return users.filter((user) => {
+            return (
+                JSON.stringify(user.profession) === JSON.stringify(selectedProf)
+            );
+        });
+    };
+
+    const searchDataFunc = () => {
+        return users.filter((user) => {
+            if (!reg.test(JSON.stringify(user.name))) {
+                return JSON.stringify(user.name) === JSON.stringify(searchData);
+            }
+            return users;
+        });
+    };
+
     if (users) {
         const filteredUsers = selectedProf
-            ? users.filter(
-                  (user) =>
-                      JSON.stringify(user.profession) ===
-                      JSON.stringify(selectedProf)
-              )
+            ? selectedProfFunc()
+            : searchData
+            ? searchDataFunc()
             : users;
 
+        console.log(filteredUsers);
+
         const count = filteredUsers.length;
+
         const sortedUsers = _.orderBy(
             filteredUsers,
             [sortBy.path],
             [sortBy.order]
         );
+
         const usersCrop = paginate(sortedUsers, currentPage, pageSize);
-        const clearFilter = () => {
-            setSelectedProf();
-        };
 
         return (
             <div className="d-flex">
@@ -78,18 +113,25 @@ const UsersList = () => {
                             selectedItem={selectedProf}
                             items={professions}
                             onItemSelect={handleProfessionSelect}
+                            onClick={clearSearchData}
+                            clearSearchData={clearSearchData}
                         />
                         <button
                             className="btn btn-secondary mt-2"
                             onClick={clearFilter}
                         >
                             {" "}
-                            Очиститть
+                            Очистить
                         </button>
                     </div>
                 )}
                 <div className="d-flex flex-column">
                     <SearchStatus length={count} />
+                    <TextField
+                        placeholder="Search..."
+                        onChange={handleChange}
+                        value={searchData}
+                    />
                     {count > 0 && (
                         <UserTable
                             users={usersCrop}
