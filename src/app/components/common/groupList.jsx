@@ -6,8 +6,7 @@ const GroupList = ({
     valueProperty,
     contentProperty,
     onItemSelect,
-    selectedItem,
-    clearSearchData
+    selectedItem
 }) => {
     if (!Array.isArray(items)) {
         return (
@@ -19,10 +18,7 @@ const GroupList = ({
                             "list-group-item" +
                             (items[item] === selectedItem ? " active" : "")
                         }
-                        onClick={() => {
-                            onItemSelect(items[item]);
-                            clearSearchData();
-                        }}
+                        onClick={() => onItemSelect(items[item])}
                         role="button"
                     >
                         {items[item][contentProperty]}
@@ -40,10 +36,7 @@ const GroupList = ({
                         "list-group-item" +
                         (item === selectedItem ? " active" : "")
                     }
-                    onClick={() => {
-                        onItemSelect(item);
-                        clearSearchData();
-                    }}
+                    onClick={() => onItemSelect(item)}
                     role="button"
                 >
                     {item[contentProperty]}
@@ -61,8 +54,7 @@ GroupList.propTypes = {
     valueProperty: PropTypes.string.isRequired,
     contentProperty: PropTypes.string.isRequired,
     onItemSelect: PropTypes.func,
-    selectedItem: PropTypes.object,
-    clearSearchData: PropTypes.func
+    selectedItem: PropTypes.object
 };
 
 export default GroupList;
