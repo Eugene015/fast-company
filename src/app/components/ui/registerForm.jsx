@@ -60,7 +60,6 @@ const RegisterForm = () => {
             setQualities(qualitiesList);
         });
     }, []);
-
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,

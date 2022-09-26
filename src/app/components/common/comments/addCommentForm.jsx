@@ -22,7 +22,7 @@ const AddCommentForm = ({ onSubmit }) => {
                 message: "Выберите от чьего имени вы хотите отправить сообщение"
             }
         },
-        comment: {
+        content: {
             isRequired: {
                 message: "Сообщение не может быть пустым"
             }
@@ -34,16 +34,13 @@ const AddCommentForm = ({ onSubmit }) => {
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
-
     useEffect(() => {
         API.users.fetchAll().then(setUsers);
     }, []);
-
     const clearForm = () => {
         setData(initialData);
         setErrors({});
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
@@ -51,17 +48,15 @@ const AddCommentForm = ({ onSubmit }) => {
         onSubmit(data);
         clearForm();
     };
-
     const arrayOfUsers =
         users &&
         Object.keys(users).map((userId) => ({
-            name: users[userId].name,
+            label: users[userId].name,
             value: users[userId]._id
         }));
-
     return (
         <div>
-            <h2>New Comment</h2>
+            <h2>New comment</h2>
             <form onSubmit={handleSubmit}>
                 <SelectField
                     onChange={handleChange}
@@ -85,7 +80,6 @@ const AddCommentForm = ({ onSubmit }) => {
         </div>
     );
 };
-
 AddCommentForm.propTypes = {
     onSubmit: PropTypes.func
 };
