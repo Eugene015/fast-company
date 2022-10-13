@@ -1,27 +1,24 @@
 import React from "react";
+import useMockData from "../utils/mockData";
 
 const Main = () => {
+    const { error, initialize, progress, status } = useMockData();
+    const handleClick = () => {
+        initialize();
+    };
     return (
         <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6 offset-md-3 shadow p-4">
-                    <h1 className="fw-bold pb-4">Fast Company</h1>
-                    <p>
-                        Educational project in React JS technology with
-                        functional components and hooks: useState, useEffect,
-                        useHistory, useParams.
-                    </p>
-                    <p>
-                        Implemented Fake REST API data fetching is to pull data.
-                        Used an array of objects and object of objects to
-                        display content in the components.
-                    </p>
-                    <p>
-                        Please, use the navigation menu above to study all the
-                        project features.
-                    </p>
-                </div>
-            </div>
+            <h1> Main Page</h1>
+            <h3>Инициализация данных в FireBase</h3>
+            <ul>
+                <li>Status: {status}</li>
+                <li>Progress: {progress}%</li>
+                {error && <li>Error: {error}</li>}
+            </ul>
+            <button className="btn btn-primary" onClick={handleClick}>
+                {" "}
+                Инициализировать
+            </button>
         </div>
     );
 };
