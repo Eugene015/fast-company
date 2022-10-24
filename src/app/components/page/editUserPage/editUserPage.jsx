@@ -32,8 +32,6 @@ const EditUserPage = () => {
         value: qual._id,
         label: qual.name
     }));
-    console.log(data.profession);
-    console.log(data.qualities);
 
     useEffect(() => {
         if (qualities && professions) {
