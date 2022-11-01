@@ -1,10 +1,6 @@
 # Fast Company
 
-Educational project based on React JS technology using functional components and hooks (useState, useEffect, useHistory, useParams). In the project are implemented filtering, sorting, and pagination features. Fake REST API data fetching is used to pull up data. An array of objects and object of objects are used to display content in the components.  
-
-https://eugene015.github.io/fast-company
-
-![fastcompany](https://user-images.githubusercontent.com/101366301/186401566-4bf11acd-1b5a-404a-a776-8e029a5a4042.gif)
+Educational project based on React JS technology using functional components and hooks (useState, useEffect, useHistory, useParams). In the project are implemented filtering, sorting, and pagination features. Fake REST API data fetching is used to pull up data. An array of objects and object of objects are used to display content in the components. 
 
 
 # Getting Started with Create React App
