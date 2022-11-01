@@ -52,6 +52,13 @@ const usersSlice = createSlice({
             }
             state.entities.push(action.payload);
         },
+        userUpdated: (state, action) => {
+            state.entities[
+                state.entities.findIndex(
+                    (user) => user._id === action.payload._id
+                )
+            ] = action.payload;
+        },
         userLoggedOut: (state) => {
             state.entities = null;
             state.isLoggedIn = false;
@@ -69,12 +76,15 @@ const {
     authRequestSuccess,
     authRequestFailed,
     userCreated,
-    userLoggedOut
+    userLoggedOut,
+    userUpdated
 } = actions;
 
 const authRequested = createAction("users/authRequested");
+const userRequestedUpdate = createAction("users/userRequestedUpdate");
 const userCreateRequested = createAction("users/userCreateRequested");
 const createUserFailed = createAction("users/createUserFailed");
+const updateUserFailed = createAction("users/createUserFailed");
 
 export const login =
     ({ payload, redirect }) =>
@@ -117,6 +127,21 @@ export const signUp =
             dispatch(authRequestFailed(error.message));
         }
     };
+
+export function updateUserData(payload) {
+    return async function (dispatch) {
+        dispatch(userRequestedUpdate());
+        try {
+            const { content } = await userService.update(payload);
+            console.log(content);
+            dispatch(userUpdated(content));
+            history.push(`/users/${content._id}`);
+        } catch (error) {
+            dispatch(updateUserFailed(error.message));
+        }
+    };
+}
+
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData();
     dispatch(userLoggedOut());
