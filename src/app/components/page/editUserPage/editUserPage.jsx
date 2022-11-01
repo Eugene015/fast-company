@@ -16,23 +16,22 @@ import {
     getProfessions,
     getProfessionsLoadingStatus
 } from "../../../store/professions";
+import { getCurrentUserData } from "../../../store/users";
 
 const EditUserPage = () => {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState();
-    const { currentUser, updateUserData } = useAuth();
+    const currentUser = useSelector(getCurrentUserData());
+    const { updateUserData } = useAuth();
     const qualities = useSelector(getQualities());
     const qualitiesLoading = useSelector(getQualitiesLoadingStatus());
-    const professions = useSelector(getProfessions());
-    const professionsLoading = useSelector(getProfessionsLoadingStatus());
     const qualitiesList = qualities.map((q) => ({
         label: q.name,
         value: q._id
     }));
-
-    console.log(professions);
-    console.log(professionsLoading);
+    const professions = useSelector(getProfessions());
+    const professionLoading = useSelector(getProfessionsLoadingStatus());
     const professionsList = professions.map((p) => ({
         label: p.name,
         value: p._id
@@ -70,13 +69,13 @@ const EditUserPage = () => {
         return result;
     };
     useEffect(() => {
-        if (!professionsLoading && !qualitiesLoading && currentUser && !data) {
+        if (!professionLoading && !qualitiesLoading && currentUser && !data) {
             setData({
                 ...currentUser,
                 qualities: transformData(currentUser.qualities)
             });
         }
-    }, [professionsLoading, qualitiesLoading, currentUser, data]);
+    }, [professionLoading, qualitiesLoading, currentUser, data]);
     useEffect(() => {
         if (data && isLoading) {
             setIsLoading(false);
