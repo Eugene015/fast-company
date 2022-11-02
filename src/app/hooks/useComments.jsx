@@ -22,6 +22,7 @@ export const CommentsProvider = ({ children }) => {
     useEffect(() => {
         getComments();
     }, [userId]);
+
     async function createComment(data) {
         const comment = {
             ...data,
