@@ -3,6 +3,10 @@
 My fundamental React educational project based on React JS technology uses functional components and hooks (useState, useEffect, customHooks, HOCs, Redux Toolkit, Firebase backend, Axios, npm plugins, and libraries). The project has implemented filtering, sorting, pagination, searching, logIn, SignUp, logOut and other features.
 
 
+![fast-company](https://user-images.githubusercontent.com/101366301/199701135-e6db923f-2d67-48f7-9afa-23581c3d3541.gif)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
