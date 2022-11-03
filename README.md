@@ -1,6 +1,6 @@
 # Fast Company
 
-Educational project based on React JS technology using functional components and hooks (useState, useEffect, useHistory, useParams). In the project are implemented filtering, sorting, and pagination features. Fake REST API data fetching is used to pull up data. An array of objects and object of objects are used to display content in the components. 
+My fundamental React educational project based on React JS technology uses functional components and hooks (useState, useEffect, customHooks, HOCs, Redux Toolkit, Firebase backend, Axios, npm plugins, and libraries). The project has implemented filtering, sorting, pagination, searching, logIn, SignUp, logOut and other features.
 
 
 # Getting Started with Create React App
