@@ -1,5 +1,5 @@
 {
-  "port": 8080,
+  "port": 9000,
   "mongoUri": "mongodb+srv://eugene:12345678Q@cluster0.vsaq3ox.mongodb.net/?retryWrites=true&w=majority",
   "accessSecret": "super secret from backend",
   "refreshSecret": "super refresh key"
