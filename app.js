@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use("/api", routes);
 
-const PORT = config.get("port") ?? 9000;
+const PORT = config.get("port") ?? 5000;
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "client", "build")));
@@ -31,7 +31,7 @@ async function start() {
     });
     await mongoose.connect(config.get("mongoUri"));
     console.log(chalk.green(`MongoDB connected.`));
-    app.listen(process.env.PORT || 9000, () =>
+    app.listen(process.env.PORT || 5000, () =>
       console.log(chalk.green(`Server has been started on port ${PORT}...`))
     );
   } catch (e) {
